@@ -183,6 +183,7 @@ qiime tools import \
 ```
 
 ### Extract reference reads & train classifer
+This step is another computationally heavy step, so request nodes and time accordingly!
 1. First, you must extract reference reads from your database to obtain just the region of the target sequences that was sequenced. This is done by specifying the primers you used during library prep. In this case, I'm using the 18S V4 region primers
 
 Reference: https://docs.qiime2.org/2024.2/plugins/available/feature-classifier/extract-reads/
