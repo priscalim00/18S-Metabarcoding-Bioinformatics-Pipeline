@@ -293,7 +293,7 @@ sed -i '1d' table.tsv
 sed -i 's/#OTU ID//' table.tsv
 cd ../
 ```
-2. The representative sequences (seq.qza) and taxonomy (assigned-taxonomy.qza) files will be exported as .tsv
+2. The representative sequences (seq.qza) will be exported as dna-sequences.fasta and taxonomy (assigned-taxonomy.qza) will be exported as .tsv
 ```
 qiime tools export \
   --input-path QZA/seqs.qza \
