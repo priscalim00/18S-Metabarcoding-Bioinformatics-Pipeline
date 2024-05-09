@@ -276,7 +276,7 @@ QIIME2 has multiple built-in plug ins that supports diversity and differential a
 
 `qiime composition`: For differential abundance analysis using ANCOM-BC https://docs.qiime2.org/2024.2/plugins/available/composition/#composition
 
-1. The table.qza file is exported as a feature-table.biom file so it must be converted to .tsv
+1. The table.qza file is exported as a 'feature-table.biom' file so it must be converted to .tsv
 ```
 mkdir export
 qiime tools export \ 
@@ -293,7 +293,7 @@ sed -i '1d' table.tsv
 sed -i 's/#OTU ID//' table.tsv
 cd ../
 ```
-2. The representative sequences (seq.qza) will be exported as dna-sequences.fasta and taxonomy (assigned-taxonomy.qza) will be exported as .tsv
+2. The representative sequences (seq.qza) will be exported as 'dna-sequences.fasta' and taxonomy (assigned-taxonomy.qza) will be exported as .tsv
 ```
 qiime tools export \
   --input-path QZA/seqs.qza \
