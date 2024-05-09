@@ -14,8 +14,10 @@ Multiplexed reads will be returned as `Undetermined_R1_001.fastq.gz` and `Undete
 1. Generate a tab-delimited metadata file containing `sample-id`, `i7-index` & `i5-index`
     - i7-index should be kept in forward sequence
     - i5-index should be reverse-complemented (i.e. if i5-index is `TATAGCCT`, input `AGGCTATA`)
+   
+   For details regarding metadata formatting, see: https://docs.qiime2.org/2024.2/tutorials/metadata/
 
-    Example metadata file:
+   Example metadata file:
   
     ```
     sample-id  i7-index  i5-index
