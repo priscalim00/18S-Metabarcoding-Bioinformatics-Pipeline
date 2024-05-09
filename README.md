@@ -1,6 +1,6 @@
 # 18S-Metabarcoding-Bioinformatics-Pipeline
 
-This pipeline has been designed for 18s amplicon sequencing data but should be adaptable to 16s or other forms of amplicon data.
+This pipeline has been designed for 18S amplicon sequencing data but should be adaptable to 16S or other forms of amplicon data.
 
 All data processing will be done in QIIME2. On the UNC Longleaf cluster, QIIME2 is activated using: `module load qiime2`
 
@@ -277,22 +277,22 @@ QIIME2 has multiple built-in plug ins that supports diversity and differential a
 `qiime composition`: For differential abundance analysis using ANCOM-BC https://docs.qiime2.org/2024.2/plugins/available/composition/#composition
 
 1. The table.qza file is exported as a feature-table.biom file so it must be converted to .tsv
-   ```
-   mkdir export
-   qiime tools export \ 
-    --input-path QZA/table.qza \
-    --output-path export
-    
-   biom convert \
-    -i export/feature-table.biom \
-    -o export/table.tsv \
-    --to-tsv
-   
-    cd export
-    sed -i '1d' table.tsv
-    sed -i 's/#OTU ID//' table.tsv
-    cd ../
-   ```
+```
+mkdir export
+qiime tools export \ 
+--input-path QZA/table.qza \
+--output-path export
+
+biom convert \
+-i export/feature-table.biom \
+-o export/table.tsv \
+--to-tsv
+
+cd export
+sed -i '1d' table.tsv
+sed -i 's/#OTU ID//' table.tsv
+cd ../
+```
 2. The representative sequences (seq.qza) and taxonomy (assigned-taxonomy.qza) files will be exported as .tsv
 ```
 qiime tools export \
@@ -305,6 +305,25 @@ qiime tools export \
 ```
 These datafiles can then be loaded into R for visualization/further analyses.
 
+3. If you want to export separate FASTQ files for each sample, you can simply use `qiime tools export`:
+```
+qiime tools export \
+    --input-path QZA/trimmed-demux-seqs.qza \
+    --output-path export
+```
+This will generate R1 and R2 files for each sample.
+
+If you instead want merged paired end sequences, you should first merge your reads using `qiime vsearch merge-pairs`: https://docs.qiime2.org/2024.2/plugins/available/vsearch/merge-pairs/
+```
+qiime vsearch merge-pairs \
+    --i-demultiplexed-seqs QZA/trimmed-demux-seqs.qza \
+    --o-merged-sequences QZA/merged-demux-seqs.qza \
+    --o-unmerged-sequences QZA/unmerged-demux-seqs.qza
+
+qiime tools export \
+    --input-path QZA/merged-demux-seqs.qza \
+    --output-path export
+```
 
    
 
