@@ -106,7 +106,7 @@ Multiplexed reads will be returned as `Undetermined_R1_001.fastq.gz` and `Undete
  mkdir QZV
  qiime demux summarize \
   --i-data QZA/trimmed-demux-seqs.qza \
-  --o-visualization QZV/quality.qzv
+  --o-visualization QZV/demux-quality.qzv
  ```
 
   The resultant `demux-quality.qzv ` file can be downloaded and viewed on https://view.qiime2.org/. You can use this to determine truncation length in DADA2 (sequence base at which quality begins to drop off significantly)
